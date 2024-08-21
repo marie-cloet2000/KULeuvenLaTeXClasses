@@ -87,9 +87,17 @@
 
 \newenvironment{exercise}[1]{%
   \refstepcounter{exercise}
-      \paragraph*{Vraag \theexercise}
-
-}{
+%  \par
+%  \noindent
+    \if@printsolutions
+      {\subsection*{Oefening \theexercise}}
+      {\emph{ Gebruikt in {#1}}\\}
+    \else
+      {\subsection*{Oefening \theexercise}}
+%      \vspace{0.5ex}\\
+    \fi
+%  \par
+%  \vspace{0.5cm}
 }
 
 \if@printsolutions
