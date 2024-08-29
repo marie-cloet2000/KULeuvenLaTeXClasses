@@ -108,9 +108,9 @@
                         \large\theauthor\vphantom{Ky}
                    \end{tabular}};
          \node[anchor=south west] at (3,24) {
-					 \begin{tabular}{@{}l@{}}
-									\large \thedate\vphantom{Ky}
-							   \end{tabular}};
+             \begin{tabular}{@{}l@{}}
+                 \large \thedate\vphantom{Ky}
+             \end{tabular}};
          \draw  (3,23.7) -- ( 19,23.7);
       \end{tikzpicture}
       };
