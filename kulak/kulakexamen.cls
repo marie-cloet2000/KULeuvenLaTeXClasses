@@ -1,6 +1,8 @@
 % I use this documentclass to model my pen-and-paper exercise sessions.
 %
 % Written by Bart Vandewoestyne.
+% 
+% Updated by Marie Cloet
 %
 % TODO:
 %
@@ -38,7 +40,7 @@
 % probsoln
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kulakexamen}[08/01/2020 KU Leuven exam session LaTeX package]
+\ProvidesClass{kulakexamen}[KU Leuven campus Kulak Kortrijk exam session LaTeX documentclass]
 
 \RequirePackage{ifthen}
 \RequirePackage{comment}
@@ -54,27 +56,14 @@
 \DeclareOption{nokey}{\@printkeyfalse}
 
 \DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{article}
+  \PassOptionsToClass{\CurrentOption}{kulakarticle}
 }
 \ProcessOptions\relax
 \LoadClass{kulakarticle}
 
 \RequirePackage[a4paper]{geometry}
 
-\newcommand\coursetitle[1]{\gdef\@coursetitle{#1}}
-\newcommand\group[1]{\gdef\@group{#1}}
-
 \renewcommand{\normalsize}{\fontsize{11}{12}\selectfont}
-%\renewcommand{\maketitle}{
-%\hrulefill
-%  \begin{center}
-%    {\Large \textbf{\@coursetitle}}\\
-%    {\Large \@group}\\
-%    {\Large \@date}\\
-%    \@author
-%  \end{center}
-%\hrulefill
-%}
 \newcommand{\solutiontitle}{\noindent\textbf{Antwoord:}\enspace}
 
 \def\printsolutions{\@printsolutionstrue}
@@ -87,17 +76,14 @@
 
 \newenvironment{exercise}[1]{%
   \refstepcounter{exercise}
-%  \par
-%  \noindent
     \if@printsolutions
       {\subsection*{Oefening \theexercise}}
-      {\emph{ Gebruikt in {#1}}\\}
+      {
+        \emph{ Gebruikt in {#1}}
+      }
     \else
       {\subsection*{Oefening \theexercise}}
-%      \vspace{0.5ex}\\
     \fi
-%  \par
-%  \vspace{0.5cm}
 }
 
 \if@printsolutions
@@ -107,7 +93,8 @@
       \par
       \vspace{\parskip}
       \noindent
-      {\bf Antwoord:}\\
+      {\bf Antwoord:}
+
   }{%
     \par
 	  \nopagebreak
@@ -118,31 +105,13 @@
 \excludecomment{solution}
 \fi
 
-\newenvironment{explanation}[1][0pt]{%
-  \if@printsolutions
-    \par
-    \vspace{\parskip}
-    \noindent
-    {\bf Uitleg:}\\
-  \else
-    \par
-    \vspace*{#1}%
-    \setbox\z@\vbox\bgroup
-  \fi
-}{
-  \if@printsolutions
-    \vspace{0.5cm}
-  \else
-    \egroup
-  \fi
-}
-
 \newenvironment{key}[1][0pt]{%
   \if@printkey
     \par
     \vspace{\parskip}
     \noindent
-    {\bf Puntenverdeling:}\\
+    {\bf Puntenverdeling:}
+
   \else
     \par
     \vspace*{#1}%
